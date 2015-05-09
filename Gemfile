@@ -2,11 +2,10 @@ source 'https://rubygems.org'
 
 gem "excon"
 gem "json"
-gem 'rails-api'
 gem 'rails', '4.2.1'
 gem 'rails-api'
 gem 'spring', :group => :development
-gem 'sqlite3'
+gem 'pg'
 gem 'byebug'
 gem 'thin'
 gem 'colorist'
