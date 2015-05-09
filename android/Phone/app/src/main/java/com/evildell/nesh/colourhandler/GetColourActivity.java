@@ -4,34 +4,37 @@ import com.evildell.nesh.colourhandler.util.SystemUiHider;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
+import android.content.DialogInterface;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.graphics.drawable.DrawableWrapper;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.StatusLine;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 
@@ -94,17 +97,28 @@ public class GetColourActivity extends Activity {
     private BleDevice mDevice;
 
     private View contentView;
-    private TextView contentTextView;
+    private View productView;
+    private TextView productData;
+    private TextView productId;
     private Button searchBtn;
+    private ImageButton productImage;
 
     boolean isScanOn = false;
 
     int colourDatasetRes;
 
-    int PROX_THRESHOLD = 600;
+    int PROX_THRESHOLD = 500;
     double proxVal = PROX_THRESHOLD;
     String SEARCH_URL = "https://dry-sea-4593.herokuapp.com/matching_color/";
-    String foundColour = null;
+    String foundColour = "";
+
+    String currPrice = "";
+    String currCurrency = "";
+    String currName = "";
+    String currProdId = "";
+
+
+    int color_counter = 0;
 
     BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
@@ -120,8 +134,11 @@ public class GetColourActivity extends Activity {
 
         final View controlsView = findViewById(R.id.fullscreen_content_controls);
         contentView = findViewById(R.id.fullscreen_content);
-        contentTextView = (TextView) findViewById(R.id.fullscreen_content);
+        productView = findViewById(R.id.product_view);
+        productData = (TextView) findViewById(R.id.product_data);
+        productId = (TextView) findViewById(R.id.product_id);
         searchBtn = (Button) findViewById(R.id.search_btn);
+        productImage = (ImageButton) findViewById(R.id.product_image);
 
         // Set up an instance of SystemUiHider to control the system UI for
         // this activity.
@@ -189,6 +206,7 @@ public class GetColourActivity extends Activity {
         TextView btnTV = (TextView) findViewById(R.id.scan_button);
         if(isScanOn)
         {
+            productView.setVisibility(View.INVISIBLE);
 
             if (!mBluetoothAdapter.isEnabled())
                 mBluetoothAdapter.enable();
@@ -198,11 +216,14 @@ public class GetColourActivity extends Activity {
             discoverColourSensor();
 
 
-            btnTV.setText("Stop Scan");
+            btnTV.setText("Preparing Scanner...");
 
             Log.d("SENSOR", "I AM ON!");
         }
         else {
+
+            productView.setVisibility(View.INVISIBLE);
+
             if (mBluetoothAdapter.isEnabled())
                 mBluetoothAdapter.disable();
 
@@ -215,10 +236,41 @@ public class GetColourActivity extends Activity {
 
     }
 
+    public void buyProduct(View view)   {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Buy product");
+        builder.setMessage("Do you want to buy this product for " + currPrice + " " + currCurrency + "?");
+
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+
+                Toast.makeText( getBaseContext(), "You are going to buy '" + currName + "'.", Toast.LENGTH_LONG).show();
+
+                dialog.dismiss();
+            }
+
+        });
+
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Do nothing
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog alert = builder.create();
+        alert.show();
+
+    }
+
     public void searchColour(View view) throws IOException {
 
         new RequestTask().execute(SEARCH_URL + foundColour);
-
 
     }
 
@@ -247,9 +299,7 @@ public class GetColourActivity extends Activity {
                     response.getEntity().getContent().close();
                     throw new IOException(statusLine.getReasonPhrase());
                 }
-            }
-            catch(Exception e)
-            {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return responseString;
@@ -258,21 +308,65 @@ public class GetColourActivity extends Activity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            //Do anything with response..
+
+            searchBtn.setVisibility(View.INVISIBLE);
+
+            // remove any previous image
+            productImage.setImageDrawable(null);
+            currPrice = "";
+            currCurrency = "";
+            currName = "";
+
+            try {
+                JSONObject c = new JSONObject(result);
+
+                currProdId = c.getString("id");
+                String prodImg = c.getString("image");
+                currName = c.getJSONObject("name").getString("en");
+                currPrice = "" + (((float) c.getJSONObject("price").getInt("centAmount")) / 100);
+                currCurrency = c.getJSONObject("price").getString("currencyCode");
+
+
+                productView.setVisibility(View.VISIBLE);
+                productData.setText(currName + "\nPrice: " + currPrice + " " + currCurrency);
+                productId.setText(currProdId);
+
+                new GetImageTask().execute(prodImg);
+
+
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+
         }
     }
 
-    private static String convertInputStreamToString(InputStream inputStream) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
-        String line = "";
-        String result = "";
-        while((line = bufferedReader.readLine()) != null)
-            result += line;
+    class GetImageTask extends AsyncTask<String, String, Drawable> {
 
-        inputStream.close();
-        return result;
+        @Override
+        protected Drawable doInBackground(String... uri) {
 
+            InputStream is = null;
+            try {
+                is = (InputStream) new URL(uri[0]).getContent();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return Drawable.createFromStream(is, null);
+        }
+
+        @Override
+        protected void onPostExecute(Drawable prodDrw) {
+
+            super.onPostExecute(prodDrw);
+
+            productImage.setImageDrawable(prodDrw);
+
+
+        }
     }
+
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -423,59 +517,72 @@ public class GetColourActivity extends Activity {
                     @Override
                     public void onNext(Reading reading) {
 
+                        Log.d("SENSOR", "LIGHT DATA: " + reading.value.toString());
                         try {
                             TextView btnTV = (TextView) findViewById(R.id.scan_button);
 
 
-                            Log.d("SENSOR", "I AM OUTSIDE THE LOOP");
                             if (isScanOn && reading.meaning.equals("proximity")) {
-                                btnTV.setText("Scanning...");
+                                btnTV.setText("Scan now. Press to stop scanning.");
                                 proxVal = Double.parseDouble(reading.value.toString());
                                 Log.d("SENSOR", "PROX VAL - " + proxVal);
 
                             } else if (isScanOn && reading.meaning.equals("color") && proxVal > PROX_THRESHOLD) {
-                                Log.d("SENSOR", "I AM INSIDE THE LOOP");
 
-                                String delims = "[=,}]";
-                                String[] tokens = reading.value.toString().split(delims);
-                                double dr = Double.parseDouble(tokens[5]);
-                                double db = Double.parseDouble(tokens[1]);
-                                double dg = Double.parseDouble(tokens[3]);
+                                color_counter++;
 
-                                dr *= 2.0 / 3.0;
-                                double max = Math.max(dr, Math.max(dg, db));
+                                Log.d("SENSOR", "Counter: " + color_counter);
+                                if(color_counter > 2) {
+                                    Log.d("SENSOR", "COLOUR VAL - " + reading.value.toString());
 
-                                if (max > 0) {
-                                    dr = dr / max * 255.0;
-                                    dg = dg / max * 255.0;
-                                    db = db / max * 255.0;
-                                }
+                                    String delims = "[=,}]";
+                                    String[] tokens = reading.value.toString().split(delims);
+                                    double dr = Double.parseDouble(tokens[5]);
+                                    double db = Double.parseDouble(tokens[1]);
+                                    double dg = Double.parseDouble(tokens[3]);
 
-                                int intR = (int) dr;
-                                int intG = (int) dg;
-                                int intB = (int) db;
+                                    Log.d("SENSOR", "R: " + dr + " - G: " + db + " - B: " + dg);
+                                    /*
+                                    int intR = (int) (dr * (255.0/1000.0));
+                                    int intG = (int) (dg * (255.0/1000.0));
+                                    int intB = (int) (db * (255.0/1000.0));
 
-                                Log.d("SENSOR_VALUE", "R: " + intR + ",G: " + intG + ",B: " + intB);
-
-                                intR = (intR << 16) & 0x00FF0000;
-                                intG = (intG << 8) & 0x0000FF00;
-                                intB = intB & 0x000000FF;
-
-                                String hexR = Integer.toHexString(intR).substring(0,2);
-                                String hexG = Integer.toHexString(intG).substring(0,2);
-                                String hexB = Integer.toHexString(intB);
-
-                                foundColour = (hexR + hexG + hexB).toUpperCase();
-
-                                Log.d("SENSOR", "Hex found; " + foundColour);
-
-                                contentView.setBackgroundColor(Color.rgb(intR, intG, intB));
+                                    */
 
 
-                                String colourName = extractColour(intR, intG, intB);
+                                    dr *= 2.0 / 3.0;
+                                    double max = Math.max(dr, Math.max(dg, db));
 
-                                if (!colourName.equals("")) {
-                                    contentTextView.setText(colourName);
+                                    if (max > 0) {
+                                        dr = dr / max * 255.0;
+                                        dg = dg / max * 255.0;
+                                        db = db / max * 255.0;
+                                    }
+
+                                    int intR = (int) dr;
+                                    int intG = (int) dg;
+                                    int intB = (int) db;
+
+                                    Log.d("SENSOR_VALUE", "R: " + intR + ",G: " + intG + ",B: " + intB);
+
+                                    /*intR = (intR << 16) & 0x00FF0000;
+                                    intG = (intG << 8) & 0x0000FF00;
+                                    intB = intB & 0x000000FF;
+                                    */
+
+                                    String hexR = Integer.toHexString(intR).substring(0, 2);
+                                    String hexG = Integer.toHexString(intG).substring(0, 2);
+                                    String hexB = Integer.toHexString(intB);
+
+                                    foundColour = (hexR + hexG + hexB).toUpperCase();
+
+                                    Log.d("SENSOR", "Hex found; " + foundColour);
+
+                                    searchBtn.setVisibility(View.VISIBLE);
+                                    contentView.setBackgroundColor(Color.rgb(intR, intG, intB));
+
+                                    searchBtn.bringToFront();
+                                    // String colourName = extractColour(intR, intG, intB);
 
                                     if (mBluetoothAdapter.isEnabled())
                                         mBluetoothAdapter.disable();
@@ -483,9 +590,12 @@ public class GetColourActivity extends Activity {
                                     isScanOn = false;
                                     proxVal = PROX_THRESHOLD;
                                     btnTV.setText("Scan Colour");
-                                    searchBtn.setVisibility(View.VISIBLE);
+                                    color_counter = 0;
                                 }
+
                             }
+                            else if (isScanOn && reading.meaning.equals("color") && proxVal <= PROX_THRESHOLD)
+                                color_counter = 0;
 
                         }
 
@@ -501,7 +611,7 @@ public class GetColourActivity extends Activity {
 
 
 
-    private String extractColour(int R, int G, int B) {
+    /*private String extractColour(int R, int G, int B) {
 
         String colourFoundName = "";
 
@@ -551,7 +661,7 @@ public class GetColourActivity extends Activity {
         }
 
         return colourFoundName;
-    }
+    }*/
 
     private void unSubscribeToUpdates() {
         mScannerSubscription.unsubscribe();

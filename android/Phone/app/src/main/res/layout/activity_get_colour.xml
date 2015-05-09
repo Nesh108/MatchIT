@@ -6,11 +6,6 @@
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
          TextureView, etc. -->
-    <TextView android:id="@+id/fullscreen_content" android:layout_width="match_parent"
-        android:layout_height="match_parent" android:keepScreenOn="true" android:textColor="#33b5e5"
-        android:textStyle="bold" android:textSize="50sp" android:gravity="center"
-        android:text="@string/colour_content" />
-
 
     <Button
         android:layout_width="148dp"
@@ -18,7 +13,7 @@
         android:text="Search"
         android:id="@+id/search_btn"
         android:layout_gravity="center_horizontal|bottom"
-        android:visibility="visible"
+        android:visibility="invisible"
         android:clickable="true"
         android:onClick="searchColour"
         android:layout_marginBottom="100dp" />
@@ -26,7 +21,8 @@
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
     <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        android:id="@+id/fullscreen_content">
 
         <LinearLayout android:id="@+id/fullscreen_content_controls" style="?metaButtonBarStyle"
             android:layout_width="match_parent" android:layout_height="wrap_content"
@@ -37,11 +33,50 @@
             <Button android:id="@+id/scan_button" style="?metaButtonBarButtonStyle"
                 android:layout_width="0dp" android:layout_height="wrap_content"
                 android:layout_weight="1" android:text="@string/scan_button"
-                android:onClick="scanColour" />
+                android:onClick="scanColour"
+                android:visibility="visible" />
 
         </LinearLayout>
 
     </FrameLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="306dp"
+        android:visibility="invisible"
+        android:weightSum="1"
+        android:id="@+id/product_view"
+        android:onClick="buyProduct">
+
+        <ImageButton
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:id="@+id/product_image"
+            android:layout_gravity="left|top"
+            android:layout_marginTop="80dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:visibility="invisible"
+            android:id="@+id/product_id" />
+
+        <TextView
+            android:lines="2"
+            android:layout_width="wrap_content"
+            android:layout_height="61dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/product_data"
+            android:singleLine="false"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="120dp"
+            android:visibility="visible"
+            android:layout_weight="0.84" />
+
+
+    </LinearLayout>
 
 
 </FrameLayout>
