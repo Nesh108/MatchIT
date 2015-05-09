@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">MatchIT</string>
+    <string name="hello_round">Hello Round World, BITCH!</string>
+    <string name="hello_square">Hello Square World!</string>
+
+    <string name="sensor_discovery_error">There was an error when searching for sensors</string>
+    <string name="sensor_connection_error">There was an error connecting to the sensor</string>
+    <string name="sensor_reading_error">There was an error getting readings from the sensor</string>
+
+    <string name="bt_not_supported">Bluetooth not supported</string>
+
+    <string name="device_unsubscribing">Unsubscribe THU device</string>
+    <string name="thermometer_not_found">No thermometer found in DIRECT_CONNECTION mode</string>
+</resources>
