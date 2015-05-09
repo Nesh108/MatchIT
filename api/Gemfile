@@ -8,6 +8,9 @@ gem 'rails-api'
 gem 'spring', :group => :development
 gem 'sqlite3'
 gem 'byebug'
+gem 'thin'
+gem 'colorist'
+gem 'color'
 
 
 # To use ActiveModel has_secure_password
