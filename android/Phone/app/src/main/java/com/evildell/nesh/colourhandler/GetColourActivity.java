@@ -435,6 +435,7 @@ public class GetColourActivity extends Activity {
                 } else {
                     //Closes the connection.
                     response.getEntity().getContent().close();
+                    responseString = "ERROR_PAYMENT";
                     throw new IOException(statusLine.getReasonPhrase());
                 }
             } catch (Exception e) {
@@ -450,8 +451,10 @@ public class GetColourActivity extends Activity {
 
             super.onPostExecute(result);
 
-            Toast.makeText(getBaseContext(), "You have successfully purchased '" + currName + "'.", Toast.LENGTH_LONG).show();
-
+            if(!result.equals("ERROR_PAYMENT"))
+                Toast.makeText(getBaseContext(), "You have successfully purchased '" + currName + "'.", Toast.LENGTH_LONG).show();
+            else
+                Toast.makeText(getBaseContext(), "Error during payment of '" + currName + "'.", Toast.LENGTH_LONG).show();
 
         }
     }
