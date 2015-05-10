@@ -1,5 +1,5 @@
-package com.evildell.nesh.colourhandler;
-
+import com.evildell.nesh.colourhandler.ListBeaconsActivity;
+import com.evildell.nesh.colourhandler.R;
 import com.evildell.nesh.colourhandler.util.SystemUiHider;
 import com.google.android.gms.wearable.MessageApi;
 

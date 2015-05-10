@@ -43,18 +43,19 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="306dp"
+        android:layout_height="wrap_content"
         android:visibility="invisible"
         android:weightSum="1"
         android:id="@+id/product_view"
         android:onClick="buyProduct">
 
         <ImageButton
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="366dp"
+            android:layout_height="366dp"
             android:id="@+id/product_image"
             android:layout_gravity="left|top"
-            android:layout_marginTop="80dp" />
+            android:layout_marginTop="80dp"
+            android:layout_marginLeft="50dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -70,10 +71,10 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/product_data"
             android:singleLine="false"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="150dp"
             android:layout_marginTop="120dp"
             android:visibility="visible"
-            android:layout_weight="0.84" />
+            android:layout_weight="0.71" />
 
 
     </LinearLayout>

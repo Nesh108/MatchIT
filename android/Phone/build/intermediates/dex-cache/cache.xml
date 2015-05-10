@@ -2,60 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/home/nesh/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.2.0/c0b52915a48fa91b1b94a28d4a2997bac5f524df/okio-1.2.0.jar"
+        jar="/home/nesh/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="c0b52915a48fa91b1b94a28d4a2997bac5f524df">
-        <dex dex="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/pre-dexed/debug/okio-1.2.0-2ddde0889714e88e31285bbdae0d0371455c2395.jar" />
-    </item>
-    <item
-        jar="/home/nesh/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit/retrofit/1.8.0/a517f29ed06be2b2879524fcd94b6e9b36e2e0b5/retrofit-1.8.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="a517f29ed06be2b2879524fcd94b6e9b36e2e0b5">
-        <dex dex="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/pre-dexed/debug/retrofit-1.8.0-c93d2c3dcccb8cc8f635ca059a41d0b6495229d7.jar" />
-    </item>
-    <item
-        jar="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
-        <dex dex="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/pre-dexed/debug/classes-a21736bb0f25107cea34dc6608a4f8a1c7979e5c.jar" />
-    </item>
-    <item
-        jar="/home/nesh/Coding/android-sdk-linux/extras/android/m2repository/com/android/support/support-v4/19.1.0/support-v4-19.1.0.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
-        <dex dex="/home/nesh/Coding/hackathons/ColourHandler/andrestmaster/build/intermediates/pre-dexed/debug/support-v4-19.1.0-15a3792b6a9b0dccf099583a4da2ba0f72a8555b.jar" />
-    </item>
-    <item
-        jar="/home/nesh/.gradle/caches/modules-2/files-2.1/io.reactivex/rxjava/1.0.0/52c2d7adff160476ee659a19c432a1863f958361/rxjava-1.0.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="52c2d7adff160476ee659a19c432a1863f958361">
-        <dex dex="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/pre-dexed/debug/rxjava-1.0.0-d36cab07a78d77e82e0c68408f364dbe7a39e60b.jar" />
-    </item>
-    <item
-        jar="/home/nesh/.gradle/caches/modules-2/files-2.1/io.reactivex/rxandroid/0.21.0/5043a4a51b9b85c0ef4e11f6766c797e95616b96/rxandroid-0.21.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="5043a4a51b9b85c0ef4e11f6766c797e95616b96">
-        <dex dex="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/pre-dexed/debug/rxandroid-0.21.0-8b95bed40002135668679fd394aed7bc95bfb48e.jar" />
-    </item>
-    <item
-        jar="/home/nesh/.gradle/caches/modules-2/files-2.1/com.squareup.dagger/dagger/1.2.2/e8f912ee19ad84958510883ea191135276b091f8/dagger-1.2.2.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="e8f912ee19ad84958510883ea191135276b091f8">
-        <dex dex="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/pre-dexed/debug/dagger-1.2.2-e5dafa97c0737c4bd635c9cffd2aaa06d8a2e489.jar" />
-    </item>
-    <item
-        jar="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/libs/internal_impl-22.1.1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
-        <dex dex="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.1-5d7239baa05a839c479a92ac79b55c80067fef5a.jar" />
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/pre-dexed/debug/javax.inject-1-2972a443851106b2059c4fea106a5f81bc4a6a15.jar" />
     </item>
     <item
         jar="/home/nesh/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp-urlconnection/2.2.0/cb20062e14c523637b7643295418097b48cccec2/okhttp-urlconnection-2.2.0.jar"
@@ -72,46 +23,18 @@
         <dex dex="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/pre-dexed/debug/mqtt-client-0.4.0-8a6411328516c32e83f5776d14c3451b67a7b74a.jar" />
     </item>
     <item
-        jar="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.1/jars/classes.jar"
+        jar="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/7.3.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
-        <dex dex="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/pre-dexed/debug/classes-0cbfde6a76dca3a704afed660ea6482e708a95c7.jar" />
+        sha1="e5bf453b070c1e39297986144960e45afa0fdfad">
+        <dex dex="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/pre-dexed/debug/classes-dd5bc7c7c7eb55769ca2c679cb6df896463cc250.jar" />
     </item>
     <item
-        jar="/home/nesh/Coding/hackathons/ColourHandler/andrestmaster/libs/commons-lang-2.6.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="0ce1edb914c94ebc388f086c6827e8bdeec71ac2">
-        <dex dex="/home/nesh/Coding/hackathons/ColourHandler/andrestmaster/build/intermediates/pre-dexed/debug/commons-lang-2.6-3d4476a4d71a84eb7f2501ff9911d7d04262d16d.jar" />
-    </item>
-    <item
-        jar="/home/nesh/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp/2.2.0/959c454243581fdf730abfd4f4745441724bcf2c/okhttp-2.2.0.jar"
+        jar="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="959c454243581fdf730abfd4f4745441724bcf2c">
-        <dex dex="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/pre-dexed/debug/okhttp-2.2.0-7df304229a51d276be5415e54572572186c0bf07.jar" />
-    </item>
-    <item
-        jar="/home/nesh/Coding/android-sdk-linux/extras/android/m2repository/com/android/support/support-v4/19.1.0/support-v4-19.1.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
-        <dex dex="/home/nesh/Coding/hackathons/ColourHandler/andrestmaster/build/intermediates/pre-dexed/release/support-v4-19.1.0-15a3792b6a9b0dccf099583a4da2ba0f72a8555b.jar" />
-    </item>
-    <item
-        jar="/home/nesh/Coding/hackathons/ColourHandler/andrestmaster/libs/commons-lang-2.6.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="0ce1edb914c94ebc388f086c6827e8bdeec71ac2">
-        <dex dex="/home/nesh/Coding/hackathons/ColourHandler/andrestmaster/build/intermediates/pre-dexed/release/commons-lang-2.6-3d4476a4d71a84eb7f2501ff9911d7d04262d16d.jar" />
-    </item>
-    <item
-        jar="/home/nesh/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="6975da39a7040257bd51d21a231b76c915872d38">
-        <dex dex="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/pre-dexed/debug/javax.inject-1-2972a443851106b2059c4fea106a5f81bc4a6a15.jar" />
+        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
+        <dex dex="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/pre-dexed/debug/classes-a21736bb0f25107cea34dc6608a4f8a1c7979e5c.jar" />
     </item>
     <item
         jar="/home/nesh/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3/5fc52c41ef0239d1093a1eb7c3697036183677ce/gson-2.3.jar"
@@ -121,6 +44,13 @@
         <dex dex="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/pre-dexed/debug/gson-2.3-c14f8d0b2dac78d513fc48b5db07fb8f7ae57a73.jar" />
     </item>
     <item
+        jar="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f2f7ec211ce4d244ee97a57523eeb4526dc3cf8a">
+        <dex dex="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/pre-dexed/debug/classes-a019592d0541e233d123307d117ab2abb326c91a.jar" />
+    </item>
+    <item
         jar="/home/nesh/Coding/android-sdk-linux/extras/android/m2repository/com/android/support/support-annotations/22.1.1/support-annotations-22.1.1.jar"
         jumboMode="false"
         revision="22.0.1"
@@ -128,11 +58,67 @@
         <dex dex="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.1-41317ff78a554236b6301252d88d469ced453263.jar" />
     </item>
     <item
+        jar="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/libs/internal_impl-22.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
+        <dex dex="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.1-5d7239baa05a839c479a92ac79b55c80067fef5a.jar" />
+    </item>
+    <item
+        jar="/home/nesh/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.2.0/c0b52915a48fa91b1b94a28d4a2997bac5f524df/okio-1.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c0b52915a48fa91b1b94a28d4a2997bac5f524df">
+        <dex dex="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/pre-dexed/debug/okio-1.2.0-2ddde0889714e88e31285bbdae0d0371455c2395.jar" />
+    </item>
+    <item
+        jar="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
+        <dex dex="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/pre-dexed/debug/classes-0cbfde6a76dca3a704afed660ea6482e708a95c7.jar" />
+    </item>
+    <item
+        jar="/home/nesh/.gradle/caches/modules-2/files-2.1/io.reactivex/rxandroid/0.21.0/5043a4a51b9b85c0ef4e11f6766c797e95616b96/rxandroid-0.21.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="5043a4a51b9b85c0ef4e11f6766c797e95616b96">
+        <dex dex="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/pre-dexed/debug/rxandroid-0.21.0-8b95bed40002135668679fd394aed7bc95bfb48e.jar" />
+    </item>
+    <item
+        jar="/home/nesh/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp/2.2.0/959c454243581fdf730abfd4f4745441724bcf2c/okhttp-2.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="959c454243581fdf730abfd4f4745441724bcf2c">
+        <dex dex="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/pre-dexed/debug/okhttp-2.2.0-7df304229a51d276be5415e54572572186c0bf07.jar" />
+    </item>
+    <item
+        jar="/home/nesh/.gradle/caches/modules-2/files-2.1/com.squareup.dagger/dagger/1.2.2/e8f912ee19ad84958510883ea191135276b091f8/dagger-1.2.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e8f912ee19ad84958510883ea191135276b091f8">
+        <dex dex="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/pre-dexed/debug/dagger-1.2.2-e5dafa97c0737c4bd635c9cffd2aaa06d8a2e489.jar" />
+    </item>
+    <item
         jar="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/exploded-aar/io.relayr/android-sdk/0.0.13/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="37ff96db1789c77198f7116567eeb442c5773b52">
         <dex dex="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/pre-dexed/debug/classes-599e2414d702b21584f7aef460a822e0221367ba.jar" />
+    </item>
+    <item
+        jar="/home/nesh/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit/retrofit/1.8.0/a517f29ed06be2b2879524fcd94b6e9b36e2e0b5/retrofit-1.8.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a517f29ed06be2b2879524fcd94b6e9b36e2e0b5">
+        <dex dex="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/pre-dexed/debug/retrofit-1.8.0-c93d2c3dcccb8cc8f635ca059a41d0b6495229d7.jar" />
+    </item>
+    <item
+        jar="/home/nesh/.gradle/caches/modules-2/files-2.1/io.reactivex/rxjava/1.0.0/52c2d7adff160476ee659a19c432a1863f958361/rxjava-1.0.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="52c2d7adff160476ee659a19c432a1863f958361">
+        <dex dex="/home/nesh/Coding/hackathons/ColourHandler/app/build/intermediates/pre-dexed/debug/rxjava-1.0.0-d36cab07a78d77e82e0c68408f364dbe7a39e60b.jar" />
     </item>
 
 </items>

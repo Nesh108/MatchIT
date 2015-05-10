@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/nesh/Coding/hackathons/MatchIT/app/build/intermediates/exploded-aar/io.relayr/android-sdk/0.0.13/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="37ff96db1789c77198f7116567eeb442c5773b52">
+        <dex dex="/home/nesh/Coding/hackathons/MatchIT/app/build/intermediates/pre-dexed/debug/classes-3a9c388e8c1b7959062aec992b251c29ffc3f81f.jar" />
+    </item>
+    <item
+        jar="/home/nesh/.gradle/caches/modules-2/files-2.1/io.reactivex/rxandroid/0.21.0/5043a4a51b9b85c0ef4e11f6766c797e95616b96/rxandroid-0.21.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="5043a4a51b9b85c0ef4e11f6766c797e95616b96">
+        <dex dex="/home/nesh/Coding/hackathons/MatchIT/app/build/intermediates/pre-dexed/debug/rxandroid-0.21.0-8b95bed40002135668679fd394aed7bc95bfb48e.jar" />
+    </item>
+    <item
+        jar="/home/nesh/Coding/hackathons/MatchIT/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/jars/libs/internal_impl-22.0.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
+        <dex dex="/home/nesh/Coding/hackathons/MatchIT/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-d73023bf67c6fb83df0fa230f9e3588abb494b58.jar" />
+    </item>
+    <item
+        jar="/home/nesh/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp-urlconnection/2.2.0/cb20062e14c523637b7643295418097b48cccec2/okhttp-urlconnection-2.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="cb20062e14c523637b7643295418097b48cccec2">
+        <dex dex="/home/nesh/Coding/hackathons/MatchIT/app/build/intermediates/pre-dexed/debug/okhttp-urlconnection-2.2.0-9c6594ec666bc547316c348a518596789957001c.jar" />
+    </item>
+    <item
+        jar="/home/nesh/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp/2.2.0/959c454243581fdf730abfd4f4745441724bcf2c/okhttp-2.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="959c454243581fdf730abfd4f4745441724bcf2c">
+        <dex dex="/home/nesh/Coding/hackathons/MatchIT/app/build/intermediates/pre-dexed/debug/okhttp-2.2.0-7df304229a51d276be5415e54572572186c0bf07.jar" />
+    </item>
+    <item
+        jar="/home/nesh/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3/5fc52c41ef0239d1093a1eb7c3697036183677ce/gson-2.3.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="5fc52c41ef0239d1093a1eb7c3697036183677ce">
+        <dex dex="/home/nesh/Coding/hackathons/MatchIT/app/build/intermediates/pre-dexed/debug/gson-2.3-c14f8d0b2dac78d513fc48b5db07fb8f7ae57a73.jar" />
+    </item>
+    <item
+        jar="/home/nesh/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit/retrofit/1.8.0/a517f29ed06be2b2879524fcd94b6e9b36e2e0b5/retrofit-1.8.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a517f29ed06be2b2879524fcd94b6e9b36e2e0b5">
+        <dex dex="/home/nesh/Coding/hackathons/MatchIT/app/build/intermediates/pre-dexed/debug/retrofit-1.8.0-c93d2c3dcccb8cc8f635ca059a41d0b6495229d7.jar" />
+    </item>
+    <item
+        jar="/home/nesh/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="/home/nesh/Coding/hackathons/MatchIT/app/build/intermediates/pre-dexed/debug/javax.inject-1-2972a443851106b2059c4fea106a5f81bc4a6a15.jar" />
+    </item>
+    <item
+        jar="/home/nesh/.gradle/caches/modules-2/files-2.1/io.reactivex/rxjava/1.0.0/52c2d7adff160476ee659a19c432a1863f958361/rxjava-1.0.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="52c2d7adff160476ee659a19c432a1863f958361">
+        <dex dex="/home/nesh/Coding/hackathons/MatchIT/app/build/intermediates/pre-dexed/debug/rxjava-1.0.0-d36cab07a78d77e82e0c68408f364dbe7a39e60b.jar" />
+    </item>
+    <item
+        jar="/home/nesh/.gradle/caches/modules-2/files-2.1/com.squareup.dagger/dagger/1.2.2/e8f912ee19ad84958510883ea191135276b091f8/dagger-1.2.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e8f912ee19ad84958510883ea191135276b091f8">
+        <dex dex="/home/nesh/Coding/hackathons/MatchIT/app/build/intermediates/pre-dexed/debug/dagger-1.2.2-e5dafa97c0737c4bd635c9cffd2aaa06d8a2e489.jar" />
+    </item>
+    <item
+        jar="/home/nesh/Coding/hackathons/MatchIT/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="/home/nesh/Coding/hackathons/MatchIT/app/build/intermediates/pre-dexed/debug/classes-3585b90e848e39e4d777e57949eccf9fd8edf7db.jar" />
+    </item>
+    <item
+        jar="/home/nesh/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.2.0/c0b52915a48fa91b1b94a28d4a2997bac5f524df/okio-1.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c0b52915a48fa91b1b94a28d4a2997bac5f524df">
+        <dex dex="/home/nesh/Coding/hackathons/MatchIT/app/build/intermediates/pre-dexed/debug/okio-1.2.0-2ddde0889714e88e31285bbdae0d0371455c2395.jar" />
+    </item>
+    <item
+        jar="/home/nesh/Coding/hackathons/MatchIT/app/build/intermediates/exploded-aar/com.google.android.support/wearable/1.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="27f19641b81b1078e653d2f0e5d1ed44d158a785">
+        <dex dex="/home/nesh/Coding/hackathons/MatchIT/app/build/intermediates/pre-dexed/debug/classes-98fd9c3cf004f6653edd35b5a671ba141d1c915e.jar" />
+    </item>
+    <item
+        jar="/home/nesh/.gradle/caches/modules-2/files-2.1/org.eclipse.paho/mqtt-client/0.4.0/2315d1759d01e52495e040e6e538aaa2e91c7f6/mqtt-client-0.4.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="02315d1759d01e52495e040e6e538aaa2e91c7f6">
+        <dex dex="/home/nesh/Coding/hackathons/MatchIT/app/build/intermediates/pre-dexed/debug/mqtt-client-0.4.0-8a6411328516c32e83f5776d14c3451b67a7b74a.jar" />
+    </item>
+    <item
+        jar="/home/nesh/Coding/hackathons/MatchIT/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/21.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="efeda77c808750cb670ee9c48d8a1835d89dbcb2">
+        <dex dex="/home/nesh/Coding/hackathons/MatchIT/app/build/intermediates/pre-dexed/debug/classes-d6221bad2d212452e25302c8a32d09e4d367b665.jar" />
+    </item>
+    <item
+        jar="/home/nesh/Coding/android-sdk-linux/extras/android/m2repository/com/android/support/support-annotations/22.0.0/support-annotations-22.0.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
+        <dex dex="/home/nesh/Coding/hackathons/MatchIT/app/build/intermediates/pre-dexed/debug/support-annotations-22.0.0-0532045e89392b7a3b70b4ed46590fb34a07fba6.jar" />
+    </item>
+    <item
+        jar="/home/nesh/Coding/hackathons/MatchIT/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/7.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e5bf453b070c1e39297986144960e45afa0fdfad">
+        <dex dex="/home/nesh/Coding/hackathons/MatchIT/app/build/intermediates/pre-dexed/debug/classes-95b416a64e975a487aef9e6cf5cd171a25595c79.jar" />
+    </item>
+    <item
+        jar="/home/nesh/Coding/hackathons/MatchIT/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f2f7ec211ce4d244ee97a57523eeb4526dc3cf8a">
+        <dex dex="/home/nesh/Coding/hackathons/MatchIT/app/build/intermediates/pre-dexed/debug/classes-217fee987982db5bd84611fe44649f2a5ef408ad.jar" />
+    </item>
+
+</items>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:orientation="vertical"
+    tools:context=".MatchITActivity" tools:deviceIds="wear_square">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:weightSum="1"
+        android:id="@+id/product_view"
+        android:visibility="invisible"
+        android:clickable="true"
+        android:onClick="buyProduct">
+
+        <ImageView
+            android:layout_width="88dp"
+            android:layout_height="87dp"
+            android:id="@+id/product_image"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:id="@+id/product_data"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/product_id"
+            android:layout_gravity="center_horizontal"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scan_view"
+        android:visibility="visible">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Scan"
+            android:id="@+id/scan_button"
+            android:clickable="true"
+            android:onClick="scanColour"
+            android:singleLine="true"
+            android:background="#c82c3bff"
+            android:textColor="#ffffffff"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:typeface="normal"
+            android:enabled="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/search_view"
+        android:focusable="false"
+        android:visibility="invisible">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Match"
+            android:id="@+id/search_button"
+            android:typeface="normal"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            android:enabled="true"
+            android:onClick="searchColour"
+            android:visibility="visible" />
+    </LinearLayout>
+</RelativeLayout>
