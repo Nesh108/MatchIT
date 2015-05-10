@@ -60,7 +60,8 @@
             android:textSize="25dp"
             android:textStyle="bold"
             android:typeface="normal"
-            android:enabled="true" />
+            android:enabled="true"
+            android:longClickable="true" />
     </LinearLayout>
 
     <LinearLayout
@@ -81,7 +82,8 @@
             android:textSize="25dp"
             android:enabled="true"
             android:onClick="searchColour"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:longClickable="true" />
     </LinearLayout>
 
 </RelativeLayout>

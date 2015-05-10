@@ -276,9 +276,9 @@ public class GetColourActivity extends Activity {
 
             public void onClick(DialogInterface dialog, int which) {
 
-                Toast.makeText( getBaseContext(), "You are going to buy '" + currName + "'.", Toast.LENGTH_LONG).show();
+                Toast.makeText( getBaseContext(), "You are going to buy '" + currName + "'.", Toast.LENGTH_SHORT).show();
 
-                new PurchaseItemTask().execute(PURCHASE_URL);
+                new PurchaseItemTask().execute(PURCHASE_URL + currProdId);
 
                 dialog.dismiss();
 
@@ -386,13 +386,6 @@ public class GetColourActivity extends Activity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            finally{
-                try {
-                    is.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
 
             return Drawable.createFromStream(is, null);
         }
@@ -438,9 +431,6 @@ public class GetColourActivity extends Activity {
                     Log.d("SENSOR_HTTP", responseString);
                     out.close();
 
-
-                    Toast.makeText(getBaseContext(), "You have successfully purchased '" + currName + "'.", Toast.LENGTH_LONG).show();
-
                     //..more logic
                 } else {
                     //Closes the connection.
@@ -460,6 +450,7 @@ public class GetColourActivity extends Activity {
 
             super.onPostExecute(result);
 
+            Toast.makeText(getBaseContext(), "You have successfully purchased '" + currName + "'.", Toast.LENGTH_LONG).show();
 
 
         }

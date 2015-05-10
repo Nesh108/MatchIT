@@ -107,6 +107,8 @@ public class MatchITActivity extends Activity implements ConnectionCallbacks,
 
     private ImageView productImage;
 
+    private Button scanButton;
+    private Button searchButton;
     boolean isScanOn = false;
 
 
@@ -158,7 +160,27 @@ public class MatchITActivity extends Activity implements ConnectionCallbacks,
                 productData = (TextView) findViewById(R.id.product_data);
                 productId = (TextView) findViewById(R.id.product_id);
                 productImage = (ImageView) findViewById(R.id.product_image);
+                scanButton = (Button) findViewById(R.id.scan_button);
+                searchButton = (Button) findViewById(R.id.search_button);
+                scanButton.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        // TODO Auto-generated method stub
 
+                        System.exit(0);
+                        return true;
+                    }
+                });
+
+                searchButton.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        // TODO Auto-generated method stub
+
+                        System.exit(0);
+                        return true;
+                    }
+                });
             }
         });
     }
