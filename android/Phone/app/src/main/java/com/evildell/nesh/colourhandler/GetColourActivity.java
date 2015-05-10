@@ -1,5 +1,6 @@
 package com.evildell.nesh.colourhandler;
 
+import com.evildell.nesh.colourhandler.R;
 import com.evildell.nesh.colourhandler.util.SystemUiHider;
 import com.google.android.gms.wearable.MessageApi;
 
@@ -25,10 +26,14 @@ import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
+import org.apache.http.NameValuePair;
 import org.apache.http.StatusLine;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -36,6 +41,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -54,29 +60,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Func1;
 import rx.subscriptions.Subscriptions;
-import sdk.Beacon;
-import sdk.BeaconManager;
-import sdk.Region;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
-import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
-import com.google.android.gms.common.data.FreezableUtils;
-import com.google.android.gms.wearable.Asset;
-import com.google.android.gms.wearable.DataApi.DataItemResult;
-import com.google.android.gms.wearable.DataEvent;
-import com.google.android.gms.wearable.DataEventBuffer;
-import com.google.android.gms.wearable.MessageApi.SendMessageResult;
-import com.google.android.gms.wearable.DataApi;
-import com.google.android.gms.wearable.MessageApi;
-import com.google.android.gms.wearable.MessageEvent;
-import com.google.android.gms.wearable.Node;
-import com.google.android.gms.wearable.NodeApi;
-import com.google.android.gms.wearable.PutDataMapRequest;
-import com.google.android.gms.wearable.PutDataRequest;
-import com.google.android.gms.wearable.Wearable;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -84,9 +68,7 @@ import com.google.android.gms.wearable.Wearable;
  *
  * @see SystemUiHider
  */
-public class GetColourActivity extends Activity implements DataApi.DataListener,
-        MessageApi.MessageListener, NodeApi.NodeListener, ConnectionCallbacks,
-        OnConnectionFailedListener {
+public class GetColourActivity extends Activity {
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -126,7 +108,7 @@ public class GetColourActivity extends Activity implements DataApi.DataListener,
     private TextView productData;
     private TextView productId;
     private Button searchBtn;
-    private ImageButton productImage;
+    ImageButton productImage;
 
     boolean isScanOn = false;
 
@@ -135,6 +117,7 @@ public class GetColourActivity extends Activity implements DataApi.DataListener,
     int PROX_THRESHOLD = 500;
     double proxVal = PROX_THRESHOLD;
     String SEARCH_URL = "https://dry-sea-4593.herokuapp.com/matching_color/";
+    String PURCHASE_URL = "https://dry-sea-4593.herokuapp.com/make_payment/";
     String foundColour = "";
 
     String currPrice = "";
@@ -153,7 +136,6 @@ public class GetColourActivity extends Activity implements DataApi.DataListener,
     private static final String IMAGE_KEY = "photo";
     private static final String COUNT_KEY = "count";
 
-    private GoogleApiClient mGoogleApiClient;
     private boolean mResolvingError = false;
     private boolean mCameraSupported = false;
 
@@ -166,10 +148,6 @@ public class GetColourActivity extends Activity implements DataApi.DataListener,
     private static final double RELATIVE_START_POS = 320.0 / 1110.0;
     private static final double RELATIVE_STOP_POS = 885.0 / 1110.0;
 
-    private BeaconManager beaconManager;
-    private Beacon beacon;
-    private Region region;
-
     private View dotView;
     private int startY = -1;
     private int segmentLength = -1;
@@ -179,37 +157,6 @@ public class GetColourActivity extends Activity implements DataApi.DataListener,
         super.onCreate(savedInstanceState);
 
         new RelayrSdk.Builder(this).inMockMode(true).build();
-
-        beacon = getIntent().getParcelableExtra(ListBeaconsActivity.EXTRAS_BEACON);
-        region = new Region("regionid", beacon.getProximityUUID(), beacon.getMajor(), beacon.getMinor());
-        if (beacon == null) {
-            Toast.makeText(this, "Beacon not found in intent extras", Toast.LENGTH_LONG).show();
-            finish();
-        }
-
-        beaconManager = new BeaconManager(this);
-        beaconManager.setRangingListener(new BeaconManager.RangingListener() {
-            @Override
-            public void onBeaconsDiscovered(Region region, final List<Beacon> rangedBeacons) {
-                // Note that results are not delivered on UI thread.
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        // Just in case if there are multiple beacons with the same uuid, major, minor.
-                        Beacon foundBeacon = null;
-                        for (Beacon rangedBeacon : rangedBeacons) {
-                            if (rangedBeacon.getMacAddress().equals(beacon.getMacAddress())) {
-                                foundBeacon = rangedBeacon;
-
-                                Log.d("SENSOR_BEACON", "Found Beacon - " + rangedBeacon.getMacAddress());
-                            }
-                        }
-                    }
-                });
-            }
-        });
-
-
 
         setContentView(R.layout.activity_get_colour);
 
@@ -277,14 +224,6 @@ public class GetColourActivity extends Activity implements DataApi.DataListener,
             }
         });
 
-        mHandler = new Handler();
-
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addApi(Wearable.API)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .build();
-
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
@@ -306,7 +245,6 @@ public class GetColourActivity extends Activity implements DataApi.DataListener,
             mStartedScanning = true;
             discoverColourSensor();
 
-
             btnTV.setText("Preparing Scanner...");
 
             Log.d("SENSOR", "I AM ON!");
@@ -327,7 +265,7 @@ public class GetColourActivity extends Activity implements DataApi.DataListener,
 
     }
 
-    public void buyProduct(View view)   {
+    public void buyProduct(View v)   {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -340,7 +278,10 @@ public class GetColourActivity extends Activity implements DataApi.DataListener,
 
                 Toast.makeText( getBaseContext(), "You are going to buy '" + currName + "'.", Toast.LENGTH_LONG).show();
 
+                new PurchaseItemTask().execute(PURCHASE_URL);
+
                 dialog.dismiss();
+
             }
 
         });
@@ -365,76 +306,6 @@ public class GetColourActivity extends Activity implements DataApi.DataListener,
 
     }
 
-    @Override
-    public void onConnected(Bundle bundle) {
-
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-
-    }
-
-
-    @Override //DataListener
-    public void onDataChanged(DataEventBuffer dataEvents) {
-        LOGD(TAG, "onDataChanged: " + dataEvents);
-        final List<DataEvent> events = FreezableUtils.freezeIterable(dataEvents);
-        dataEvents.close();
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                for (DataEvent event : events) {
-                    if (event.getType() == DataEvent.TYPE_CHANGED) {
-
-                    } else if (event.getType() == DataEvent.TYPE_DELETED) {
-
-                    }
-                }
-            }
-        });
-    }
-
-    @Override //MessageListener
-    public void onMessageReceived(final MessageEvent messageEvent) {
-        LOGD(TAG, "onMessageReceived() A message from watch was received:" + messageEvent
-                .getRequestId() + " " + messageEvent.getPath());
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-               // mDataItemListAdapter.add(new Event("Message from watch", messageEvent.toString()));
-                Log.d("SENSOR_MSG", "Message from watch: " + messageEvent.toString());
-            }
-        });
-
-    }
-
-    @Override //NodeListener
-    public void onPeerConnected(final Node peer) {
-        LOGD(TAG, "onPeerConnected: " + peer);
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-
-            }
-        });
-
-    }
-
-    @Override //NodeListener
-    public void onPeerDisconnected(final Node peer) {
-        LOGD(TAG, "onPeerDisconnected: " + peer);
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-            }
-        });
-    }
-
-    @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-
-    }
 
     class RequestTask extends AsyncTask<String, String, String> {
 
@@ -515,6 +386,14 @@ public class GetColourActivity extends Activity implements DataApi.DataListener,
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            finally{
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
             return Drawable.createFromStream(is, null);
         }
 
@@ -524,6 +403,63 @@ public class GetColourActivity extends Activity implements DataApi.DataListener,
             super.onPostExecute(prodDrw);
 
             productImage.setImageDrawable(prodDrw);
+
+
+        }
+    }
+
+    class PurchaseItemTask extends AsyncTask<String, String, String> {
+
+        @Override
+        protected String doInBackground(String... uri) {
+
+            String responseString = "";
+            Log.d("SENSOR_HTTP2", "Fetching from: " + uri[0]);
+
+            try {
+                HttpClient httpclient = new DefaultHttpClient();
+                HttpPost httppost = new HttpPost(uri[0]);
+
+                // Add your data
+                List<NameValuePair> productInfo = new ArrayList<NameValuePair>(2);
+                productInfo.add(new BasicNameValuePair("name", currName));
+                productInfo.add(new BasicNameValuePair("price", currPrice));
+                productInfo.add(new BasicNameValuePair("currency", currCurrency));
+                productInfo.add(new BasicNameValuePair("quantity", "1"));
+                httppost.setEntity(new UrlEncodedFormEntity(productInfo));
+
+                HttpResponse response = httpclient.execute(httppost);
+                StatusLine statusLine = response.getStatusLine();
+                if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
+                    ByteArrayOutputStream out = new ByteArrayOutputStream();
+                    response.getEntity().writeTo(out);
+                    responseString = out.toString();
+
+                    Log.d("SENSOR_HTTP", responseString);
+                    out.close();
+
+
+                    Toast.makeText(getBaseContext(), "You have successfully purchased '" + currName + "'.", Toast.LENGTH_LONG).show();
+
+                    //..more logic
+                } else {
+                    //Closes the connection.
+                    response.getEntity().getContent().close();
+                    throw new IOException(statusLine.getReasonPhrase());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            Log.d("SENSOR_PURCHASE", "Got: " + responseString);
+            return responseString;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            super.onPostExecute(result);
+
 
 
         }
@@ -761,10 +697,10 @@ public class GetColourActivity extends Activity implements DataApi.DataListener,
 
                         }
 
-                    catch(Exception e)
-                    {
-                        e.printStackTrace();
-                    }
+                        catch(Exception e)
+                        {
+                            e.printStackTrace();
+                        }
                     }
 
                 });
@@ -832,10 +768,5 @@ public class GetColourActivity extends Activity implements DataApi.DataListener,
         if (mDevice != null) mDevice.disconnect();
     }
 
-    private static void LOGD(final String tag, String message) {
-        if (Log.isLoggable(tag, Log.DEBUG)) {
-            Log.d(tag, message);
-        }
-    }
 
 }

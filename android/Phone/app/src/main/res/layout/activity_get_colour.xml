@@ -54,15 +54,19 @@
             android:layout_height="366dp"
             android:id="@+id/product_image"
             android:layout_gravity="left|top"
+            android:scaleType="centerCrop"
             android:layout_marginTop="80dp"
-            android:layout_marginLeft="50dp" />
+            android:layout_marginLeft="50dp"
+            android:clickable="true"
+            android:longClickable="false" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:visibility="invisible"
-            android:id="@+id/product_id" />
+            android:id="@+id/product_id"
+            android:nestedScrollingEnabled="true" />
 
         <TextView
             android:lines="2"
@@ -71,10 +75,11 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/product_data"
             android:singleLine="false"
-            android:layout_marginLeft="150dp"
+            android:layout_marginLeft="0dp"
             android:layout_marginTop="120dp"
             android:visibility="visible"
-            android:layout_weight="0.71" />
+            android:layout_weight="0.71"
+            android:textColor="#ff000000" />
 
 
     </LinearLayout>
